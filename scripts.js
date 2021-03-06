@@ -1,12 +1,12 @@
-var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
     window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+let cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 
-var rAF;
+let rAF;
 
 
-var canvas = document.getElementById("canvas"),
+let canvas = document.getElementById("canvas"),
     context = canvas.getContext("2d"),
     width = canvas.width = window.innerWidth,
     height = canvas.height = window.innerHeight,
@@ -32,7 +32,7 @@ function init() {
 
     particles = [];
 
-    for (var i = 0; i < total; i += 1) {
+    for (let i = 0; i < total; i += 1) {
         particles.push(new Particle(i));
     }
 
@@ -42,7 +42,7 @@ function init() {
 function draw() {
     context.clearRect(0, 0, width, height);
 
-    for (var i = 0; i < total; i += 1) {
+    for (let i = 0; i < total; i += 1) {
         particles[i].update();
     }
 
@@ -53,7 +53,7 @@ function draw() {
 /**
  * Particle
  */
-var Particle, p;
+let Particle, p;
 
 Particle = function (index) {
     this.initialize(index);
@@ -75,7 +75,7 @@ p.initialize = function (index) {
 };
 
 p.update = function () {
-    var aim, dx, dy, scale, angle;
+    let aim, dx, dy, scale, angle;
 
     if (this.id > 1) {
         aim = particles[this.id - 1 - 1];
@@ -124,15 +124,15 @@ p.update = function () {
 };
 
 // control bar
-var ControlBar = function () {
+let ControlBar = function () {
     this.num = total;
     this.speed = followSpeed;
 };
 
-var con = new ControlBar();
-var gui = new dat.GUI();
-var conSpeed = gui.add(con, 'speed', 0.05, 0.25).step(0.05);
-var conNum = gui.add(con, 'num', 10, 30).step(1);
+let con = new ControlBar();
+let gui = new dat.GUI();
+let conSpeed = gui.add(con, 'speed', 0.05, 0.25).step(0.05);
+let conNum = gui.add(con, 'num', 10, 30).step(1);
 
 conNum.onFinishChange(function (value) {
     total = value;
